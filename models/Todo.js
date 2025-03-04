@@ -12,6 +12,11 @@ const todoTaskSchema = new mongoose.Schema({
   date:{
     type: Date,
     default: Date.now
+  },
+  completed: {
+    type: Boolean,
+    default: false,
+    required: true
   }
 })
 
