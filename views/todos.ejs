@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- todo: add button icons and fonts -->
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Todos</title>
 </head>
 <body>
+  <section class="todo-container">
     <h1>Todos</h1>
-    <ul>
-    <% todos.forEach( el => { %>
-        <li class='todoItem' data-id='<%=el._id%>'>
-            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-            <span class='del'> Delete </span>
-        </li>
-    <% }) %>    
-    </ul>
 
-    <h2>Things left to do: <%= left %></h2>
-
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
-
-    <script src="js/main.js"></script>
+    <section class="todo">
+      <form action="/todos/createTodo" method='POST' class="todo-header">
+        <input type="text" placeholder="Title" name='title'>
+        <textarea rows="6" cols="45" name="content" id="" placeholder="content"></textarea>
+        <button type="submit"><span>✅</span> Add Task</button>
+      </form>
+      <ul class="todo-list">
+        <% TodoTask.forEach( task => { %>
+          <li class="todo-list-item" data-id="<%=task._id%>">
+            <div class="todo-list-item-title">
+              <%= task.title %>
+            </div>
+            <div class="todo-list-item-content">
+              <%= task.content %>
+            </div>
+            <span class="pencil">✏️</span>
+            <span class="trash">🗑️</span>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  </section>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Edit</title>
+</head>
+<body>
+  <section class="todo-container">
+    <h1>Edit Todo</h1>
+
+    <section class="todo">
+      <ul class="todo-list">
+        <% TodoTask.forEach( task => { %>
+          <% if(task._id == idTask) { %>
+            <li class="todo-list-item">
+              <form action="/todos/edit/<%= task._id %>" method="post">
+                <input type="text" placeholder="Title" name='title' value="<%=task.title %>">
+                <textarea rows="6" cols="45" name="content" id="" placeholder="content" value="<%=task.content %>"></textarea>
+                <button type="submit" class="confirm">Confirm</button>
+                <a href="/todos" class="cancel">Cancel</a>
+              </form>
+            </li>
+          <% }else{ %>
+            <!-- <ul class="todo-list">
+              <% TodoTask.forEach( task => { %> -->
+                <li class="todo-list-item" data-id="<%=task._id%>">
+                  <div class="todo-list-item-title">
+                    <%= task.title %>
+                  </div>
+                  <div class="todo-list-item-content">
+                    <%= task.content %>
+                  </div>
+                  <a href="todos/edit/<%=task._id%>" class="edit"><span class="pencil">✏️</span></a>
+                  <a href="todos/remove/<%=task._id%>" class="remove"><span class="trash">🗑️</span></a>
+                </li>
+                <% } %>
+              <% }) %>
+            </ul>
+          }
+          <li class="todo-list-item" data-id="<%=task._id%>">
+            <div class="todo-list-item-title">
+              <%= task.title %>
+            </div>
+            <div class="todo-list-item-content">
+              <%= task.content %>
+            </div>
+            <a href="todos/edit/<%=task._id%>" class="edit"><span class="pencil">✏️</span></a>
+            <a href="todos/remove/<%=task._id%>" class="remove"><span class="trash">🗑️</span></a>
+          </li>
+        <% }) %>
+        <% }) %>
+      </ul>
+    </section>
+  </section>
+</body>
+</html>
